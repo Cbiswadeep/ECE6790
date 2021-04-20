@@ -28,7 +28,8 @@ import h5py, argparse
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers
-
+from keras import backend as K
+K.tensorflow_backend._get_available_gpus()
 
 
 data_dir = '/home/bchak/github/course/pybids/examples/ds000117'

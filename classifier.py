@@ -470,7 +470,7 @@ def train():
             for fold_idx, (train_indices, test_indices) in enumerate(gkf.split(all_indices, labels, participant_nums)):
                 print('Training', preproc_type, 'fold', str(fold_idx+1), '/', str(n_folds))
 
-                model = lstm_model(n_channels, n_timepoints)
+                model = transf_model(n_channels, n_timepoints)
 
                 eeg_seq_train = EEGEpochSequence(f, train_indices, batch_size)
                 eeg_seq_test = EEGEpochSequence(f, test_indices, batch_size)

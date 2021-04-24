@@ -28,8 +28,7 @@ import h5py, argparse
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers
-from keras import backend as K
-K.tensorflow_backend._get_available_gpus()
+import shap
 
 
 data_dir = '/home/bchak/github/course/pybids/examples/ds000117'
@@ -491,6 +490,14 @@ def train():
 
         K.clear_session()
 
+    # explain the model's predictions using SHAP
+    explainer = shap.Explainer(model)
+    shap_values = explainer(X)
+
+    # visualize the first prediction's explanation
+    shap.plots.waterfall(shap_values[0])
+
+    
     print('Results:')
     for preproc_idx, preproc_type in enumerate(preproc_types):
         print('Pre-processing type:', preproc_type, 'train accuracy:', np.mean(train_accuracies[preproc_idx, :, -1]), 'test accuracy:', np.mean(test_accuracies[preproc_idx, :]))

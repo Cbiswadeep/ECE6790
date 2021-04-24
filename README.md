@@ -10,5 +10,6 @@ Course Project for ECE 6790 Georgia Tech
 3. Create and activate the virtual environment: 
             conda env create -f environment.yml -n ee6790
             conda activate ece6790
+            conda install -c conda-forge shap
 4. Run the classifier.py as follows:
             python3 classifier.py

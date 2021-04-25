@@ -420,7 +420,8 @@ def transf_model(n_channels, n_timepoints):
     embed_dim = 32  # Embedding size for each token
     num_heads = 2  # Number of attention heads
     ff_dim = 32  # Hidden layer size in feed forward network inside transformer
-
+    maxlen = 500
+    vocab_size = 20000 
     inputs = Input(shape=(n_timepoints, n_channels))
     embedding_layer = TokenAndPositionEmbedding(maxlen, vocab_size, embed_dim)
     x = embedding_layer(inputs)
@@ -430,7 +431,7 @@ def transf_model(n_channels, n_timepoints):
     x = layers.Dropout(0.1)(x)
     x = layers.Dense(20, activation="relu")(x)
     x = layers.Dropout(0.1)(x)
-    outputs = layers.Dense(2, activation="softmax")(x)
+    outputs = layers.Dense(3, activation="softmax")(x)
 
     model = keras.Model(inputs=inputs, outputs=outputs)
 
